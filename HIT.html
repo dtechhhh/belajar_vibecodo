@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1F4B;
+  --navy2:#122560;
+  --navy3:#1a3070;
+  --gold:#C9A84C;
+  --gold2:#E2C06A;
+  --gold3:#f5d98b;
+  --white:#FAFAF8;
+  --gray:#F4F3EE;
+  --text:#0B1F4B;
+  --muted:#5a6a8a;
+  --border:#e2ddd0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+/* NAVBAR */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(11,31,75,0.97);
+  backdrop-filter:blur(12px);
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  height:68px;
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  transition:all 0.3s;
+}
+.nav-logo{
+  font-family:'DM Serif Display',serif;
+  color:var(--gold2);
+  font-size:1.35rem;
+  letter-spacing:0.02em;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo span{
+  width:36px;height:36px;background:var(--gold);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;font-weight:800;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;
+  letter-spacing:0.05em;
+}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{
+  color:rgba(255,255,255,0.75);font-size:0.875rem;font-weight:500;
+  text-decoration:none;letter-spacing:0.02em;
+  transition:color 0.25s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1.5px;background:var(--gold);
+  transform:scaleX(0);transition:transform 0.25s;transform-origin:left;
+}
+.nav-links a:hover{color:var(--gold2)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{
+  background:var(--gold);color:var(--navy);
+  padding:9px 22px;border-radius:6px;font-size:0.8rem;font-weight:700;
+  text-decoration:none;letter-spacing:0.04em;
+  transition:all 0.2s;border:none;cursor:pointer;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--gold2);border-radius:2px;transition:all 0.3s}
+.mobile-menu{
+  display:none;position:fixed;top:68px;left:0;right:0;
+  background:rgba(11,31,75,0.98);backdrop-filter:blur(12px);
+  padding:1.5rem 5%;flex-direction:column;gap:1.25rem;
+  border-bottom:1px solid rgba(201,168,76,0.2);z-index:99;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:1rem;font-weight:500;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.mobile-menu a:hover{color:var(--gold2)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:var(--navy);
+  display:flex;align-items:center;
+  padding:120px 5% 80px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-100px;left:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(201,168,76,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);
+  padding:7px 16px;border-radius:100px;
+  font-size:0.75rem;font-weight:600;color:var(--gold2);
+  letter-spacing:0.08em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.4rem,5vw,4rem);
+  color:var(--white);
+  line-height:1.15;
+  margin-bottom:1.5rem;
+  letter-spacing:-0.01em;
+}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero p{
+  color:rgba(255,255,255,0.6);
+  font-size:1.05rem;line-height:1.8;
+  margin-bottom:2.5rem;max-width:480px;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  background:var(--gold);color:var(--navy);
+  padding:14px 32px;border-radius:8px;
+  font-weight:700;font-size:0.9rem;letter-spacing:0.04em;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.3)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{
+  background:transparent;color:var(--white);
+  padding:14px 32px;border-radius:8px;
+  font-weight:600;font-size:0.9rem;
+  border:1.5px solid rgba(255,255,255,0.2);cursor:pointer;text-decoration:none;
+  transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
+
+.hero-visual{
+  display:flex;flex-direction:column;gap:1.25rem;align-items:flex-end;
+}
+.hero-stat-row{display:flex;gap:1rem;width:100%}
+.hero-stat{
+  flex:1;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;padding:1.5rem;
+  transition:all 0.3s;
+}
+.hero-stat:hover{background:rgba(255,255,255,0.07);border-color:rgba(201,168,76,0.3);transform:translateY(-3px)}
+.hero-stat .num{
+  font-family:'DM Serif Display',serif;
+  font-size:2.2rem;color:var(--gold2);
+  display:block;margin-bottom:4px;
+}
+.hero-stat .lbl{font-size:0.78rem;color:rgba(255,255,255,0.5);font-weight:500;line-height:1.4}
+.hero-img-card{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;overflow:hidden;
+  aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.hero-img-placeholder{
+  width:100%;height:100%;
+  background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(255,255,255,0.03));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;
+}
+.hero-img-placeholder svg{opacity:0.3}
+.hero-img-placeholder p{color:rgba(255,255,255,0.2);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase}
+
+/* SECTIONS COMMON */
+section{padding:90px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{
+  display:inline-block;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.section-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  color:var(--navy);line-height:1.2;margin-bottom:1rem;
+}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.8;max-width:540px}
+.section-header{margin-bottom:3rem}
+
+/* PROGRAM */
+.program-section{background:var(--white)}
+.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prog-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:20px;padding:2rem;
+  position:relative;overflow:hidden;
+  transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+  cursor:pointer;
+}
+.prog-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  opacity:0;transition:opacity 0.35s;border-radius:20px;
+}
+.prog-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(11,31,75,0.12);border-color:var(--navy)}
+.prog-card:hover::before{opacity:1}
+.prog-card:hover .prog-icon-wrap{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.4)}
+.prog-card:hover .prog-title,.prog-card:hover .prog-desc,.prog-card:hover .prog-count{color:rgba(255,255,255,0.9) !important}
+.prog-card:hover .prog-title{color:var(--gold2) !important}
+.prog-card:hover .btn-prog{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.prog-card>*{position:relative;z-index:1}
+.prog-icon-wrap{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--gray);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;font-size:1.4rem;
+  transition:all 0.3s;
+}
+.prog-title{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:0.6rem;transition:color 0.3s}
+.prog-desc{font-size:0.875rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;transition:color 0.3s}
+.prog-count{font-size:0.78rem;font-weight:600;color:var(--gold);letter-spacing:0.05em;margin-bottom:1.25rem;transition:color 0.3s}
+.btn-prog{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 20px;border-radius:8px;font-size:0.82rem;font-weight:700;
+  border:1.5px solid var(--navy);color:var(--navy);background:transparent;
+  cursor:pointer;letter-spacing:0.03em;
+  transition:all 0.25s;text-decoration:none;
+}
+.btn-prog:hover{transform:translateX(3px)}
+.btn-prog svg{transition:transform 0.25s}
+.btn-prog:hover svg{transform:translateX(3px)}
+
+/* SEKTOR */
+.sektor-section{background:var(--gray)}
+.sektor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.sektor-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+  cursor:pointer;position:relative;
+}
+.sektor-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(11,31,75,0.1);border-color:var(--navy)}
+.sektor-img{
+  width:100%;height:130px;object-fit:cover;
+  background:var(--gray);display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;position:relative;overflow:hidden;
+}
+.sektor-img-bg{
+  width:100%;height:130px;display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;transition:transform 0.4s;
+}
+.sektor-card:hover .sektor-img-bg{transform:scale(1.1)}
+.sektor-body{padding:1rem}
+.sektor-name{font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:0.4rem}
+.sektor-demand{font-size:0.75rem;color:var(--muted)}
+.btn-lihat{
+  display:block;margin:0.75rem 1rem 1rem;
+  padding:8px;border-radius:7px;
+  font-size:0.78rem;font-weight:700;
+  border:1.5px solid var(--border);color:var(--navy);
+  background:transparent;cursor:pointer;text-align:center;
+  transition:all 0.25s;text-decoration:none;
+  letter-spacing:0.03em;
+}
+.sektor-card:hover .btn-lihat{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.badge-hot{
+  position:absolute;top:10px;right:10px;
+  background:var(--gold);color:var(--navy);
+  font-size:0.65rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;
+  box-shadow:0 2px 8px rgba(201,168,76,0.4);
+}
+.sektor-card.featured{border-color:var(--gold);border-width:2px}
+.sektor-card.featured .sektor-name{color:var(--gold)}
+
+/* STATS BAR */
+.stats-bar{
+  background:var(--navy);
+  padding:50px 5%;
+}
+.stats-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;text-align:center;
+}
+.stat-item .stat-num{
+  font-family:'DM Serif Display',serif;
+  font-size:2.8rem;color:var(--gold2);
+  display:block;margin-bottom:6px;
+}
+.stat-item .stat-lbl{font-size:0.8rem;color:rgba(255,255,255,0.55);letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+
+/* TESTIMONI */
+.testi-section{background:var(--white)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:20px;padding:2rem;
+  transition:all 0.3s;
+  cursor:default;
+}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(11,31,75,0.08);border-color:var(--navy)}
+.testi-stars{display:flex;gap:3px;margin-bottom:1rem}
+.testi-stars span{color:var(--gold);font-size:1rem}
+.testi-text{
+  font-size:0.9rem;line-height:1.8;color:var(--muted);
+  margin-bottom:1.5rem;font-style:italic;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:0.85rem;color:var(--gold2);flex-shrink:0;
+}
+.testi-name{font-size:0.875rem;font-weight:700;color:var(--navy)}
+.testi-role{font-size:0.75rem;color:var(--muted)}
+
+/* FOOTER */
+footer{
+  background:var(--navy);
+  padding:60px 5% 30px;
+  color:rgba(255,255,255,0.6);
+}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;
+  gap:3rem;padding-bottom:3rem;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:2rem;
+}
+.footer-brand .logo{
+  font-family:'DM Serif Display',serif;
+  font-size:1.4rem;color:var(--gold2);
+  display:flex;align-items:center;gap:10px;margin-bottom:1rem;
+}
+.footer-brand .logo span{
+  width:34px;height:34px;background:var(--gold);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:800;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;
+}
+.footer-desc{font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem}
+.footer-social{display:flex;gap:10px}
+.social-btn{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.6);font-size:0.8rem;font-weight:700;
+  cursor:pointer;text-decoration:none;
+  transition:all 0.25s;
+}
+.social-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold);transform:translateY(-2px)}
+.footer-col h4{font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold2);margin-bottom:1.25rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.6rem}
+.footer-col ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold2)}
+.footer-address{font-size:0.82rem;line-height:1.9;margin-bottom:1rem}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;font-size:0.78rem}
+.footer-bottom span{color:rgba(255,255,255,0.3)}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);max-width:1200px;margin:0 auto}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .program-grid{grid-template-columns:repeat(2,1fr)}
+  .sektor-grid{grid-template-columns:repeat(3,1fr)}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-visual{align-items:stretch}
+  .hero-stat-row{gap:0.75rem}
+  .program-grid{grid-template-columns:1fr}
+  .sektor-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr}
+  section{padding:60px 5%}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+}
+@media(max-width:480px){
+  .sektor-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stat-row{flex-direction:column}
+}
+</style>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo"><span>HIT</span> Hashimoto Indo Trust</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Why Indonesia</a>
+    <a href="#">Program</a>
+    <a href="#">Loker</a>
+    <a href="#">Tentang Kami</a>
+  </div>
+  <a class="nav-cta" href="#">Daftar Sekarang</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+  <a href="#">Why Indonesia</a>
+  <a href="#">Program</a>
+  <a href="#">Loker</a>
+  <a href="#">Tentang Kami</a>
+  <a href="#" style="color:var(--gold2);font-weight:700">Daftar Sekarang →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">✦ LPK No.1 di Sragen</div>
+      <h1>Integritas dalam<br>Pelatihan, <em>Kesuksesan</em><br>dalam Penempatan</h1>
+      <p>PT Hashimoto Indo Trust hadir untuk mewujudkan impian Anda bekerja di Jepang. Program terstruktur, mitra terpercaya, dan rekam jejak nyata.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Lihat Program →</a>
+        <a href="#" class="btn-secondary">Tentang HIT</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <span class="num">50+</span>
+          <span class="lbl">Koneksi Perusahaan Jepang</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">10+</span>
+          <span class="lbl">Lowongan Baru per Bulan</span>
+        </div>
+      </div>
+      <div class="hero-img-card">
+        <div class="hero-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="12" fill="rgba(201,168,76,0.15)"/>
+            <circle cx="24" cy="18" r="7" stroke="rgba(201,168,76,0.6)" stroke-width="2"/>
+            <path d="M10 38c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="rgba(201,168,76,0.6)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <p>Foto Tim / Banner HIT</p>
+        </div>
+      </div>
+      <div class="hero-stat" style="width:100%;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);display:block;margin-bottom:2px">Kepercayaan Peserta</span>
+          <span style="font-size:1rem;font-weight:700;color:var(--gold2)">500+ Alumni Berhasil</span>
+        </div>
+        <div style="display:flex;gap:-6px">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1a3070,#0B1F4B);border:2px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--gold2)">RA</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2a4080,#122560);border:2px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--gold2);margin-left:-8px">DS</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3a5090,#1a3070);border:2px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--gold2);margin-left:-8px">FN</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.2);border:2px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;color:var(--gold2);margin-left:-8px">+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">No.1</span>
+      <span class="stat-lbl">LPK di Sragen</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">50+</span>
+      <span class="stat-lbl">Mitra Perusahaan Jepang</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">10+</span>
+      <span class="stat-lbl">Loker per Bulan</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">500+</span>
+      <span class="stat-lbl">Alumni Ditempatkan</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<section class="program-section" id="program">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Program Unggulan</span>
+      <h2 class="section-title">Pilih Jalur Karir<br>Terbaik Anda</h2>
+      <p class="section-sub">Tiga program terstruktur dirancang untuk mempersiapkan Anda menuju Jepang dengan percaya diri.</p>
+    </div>
+    <div class="program-grid">
+      <div class="prog-card">
+        <div class="prog-icon-wrap">🏥</div>
+        <div class="prog-count">● Program Favorit · 200+ Alumni</div>
+        <div class="prog-title">Caregiver</div>
+        <div class="prog-desc">Program pelatihan tenaga pendamping lansia untuk bekerja di fasilitas kesehatan dan rumah perawatan Jepang.</div>
+        <a href="#" class="btn-prog">Lihat Program <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon-wrap">🏭</div>
+        <div class="prog-count">● Program Populer · 150+ Alumni</div>
+        <div class="prog-title">Tokutei Ginou</div>
+        <div class="prog-desc">Visa kerja spesialis bidang manufaktur, konstruksi, dan sektor industri strategis di Jepang.</div>
+        <a href="#" class="btn-prog">Lihat Program <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon-wrap">🎓</div>
+        <div class="prog-count">● Program Baru · 80+ Alumni</div>
+        <div class="prog-title">Magang Jepang</div>
+        <div class="prog-desc">Program magang resmi 3 tahun dengan pelatihan bahasa Jepang intensif dan penempatan langsung.</div>
+        <a href="#" class="btn-prog">Lihat Program <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEKTOR -->
+<section class="sektor-section" id="sektor">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Bidang Penempatan</span>
+      <h2 class="section-title">Sektor Kerja<br>yang Tersedia</h2>
+      <p class="section-sub">Berbagai bidang pekerjaan dengan permintaan tinggi dari mitra perusahaan Jepang kami.</p>
+    </div>
+    <div class="sektor-grid">
+      <div class="sektor-card featured">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#e8f4f8,#cde8f2)">🏥</div>
+        </div>
+        <div class="badge-hot">Paling Banyak</div>
+        <div class="sektor-body">
+          <div class="sektor-name">Caregiver</div>
+          <div class="sektor-demand">⭐ Permintaan Sangat Tinggi</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#fef3e2,#fde4b5)">🍜</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Restoran</div>
+          <div class="sektor-demand">Permintaan Tinggi</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#e8ece2,#d5ddc5)">🏗️</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Konstruksi</div>
+          <div class="sektor-demand">Permintaan Tinggi</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#e2e8f0,#c5d3e0)">⚙️</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Manufaktur</div>
+          <div class="sektor-demand">Permintaan Stabil</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#e8f5e8,#c5e0c5)">🌾</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Pertanian</div>
+          <div class="sektor-demand">Permintaan Berkala</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#f5e8f0,#e0c5d5)">🏨</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Perhotelan</div>
+          <div class="sektor-demand">Permintaan Tinggi</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#f0ece2,#e0d5b5)">🔧</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Mekanik Mobil</div>
+          <div class="sektor-demand">Permintaan Stabil</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <div class="sektor-img-bg" style="background:linear-gradient(135deg,#e2e8f5,#b5c5e0)">🚗</div>
+        </div>
+        <div class="sektor-body">
+          <div class="sektor-name">Driver</div>
+          <div class="sektor-demand">Permintaan Stabil</div>
+        </div>
+        <a href="#" class="btn-lihat">Lihat Job →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="testi-section" id="testimoni">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Testimoni Alumni</span>
+      <h2 class="section-title">Mereka Sudah<br>Membuktikannya</h2>
+      <p class="section-sub">Kisah nyata alumni HIT yang kini sukses bekerja di Jepang dan mengubah kehidupan keluarga mereka.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-text">"Berkat HIT, saya kini bekerja di Tokyo sebagai caregiver dengan gaji yang tidak pernah saya bayangkan sebelumnya. Proses bimbingan dari HIT sangat profesional dan tepercaya."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RA</div>
+          <div>
+            <div class="testi-name">Rina Agustina</div>
+            <div class="testi-role">Caregiver · Tokyo, Jepang 🇯🇵</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-text">"Saya ikut program Tokutei Ginou dan langsung ditempatkan di perusahaan manufaktur besar. HIT betul-betul membantu dari A sampai Z, mulai persiapan bahasa hingga keberangkatan."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DS</div>
+          <div>
+            <div class="testi-name">Dwi Santoso</div>
+            <div class="testi-role">Operator Manufaktur · Osaka, Jepang 🇯🇵</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-text">"Dari Sragen ke Nagoya — perjalanan luar biasa yang dimulai dari HIT. Program magang sangat terstruktur dan para pembimbing benar-benar peduli terhadap perkembangan peserta."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">FN</div>
+          <div>
+            <div class="testi-name">Fitri Nur</div>
+            <div class="testi-role">Peserta Magang · Nagoya, Jepang 🇯🇵</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><span>HIT</span> Hashimoto Indo Trust</div>
+        <p class="footer-desc">LPK No.1 di Sragen yang berdedikasi menjembatani talenta Indonesia dengan peluang kerja terbaik di Jepang sejak berdirinya perusahaan.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="TikTok">TK</a>
+          <a href="#" class="social-btn" title="LinkedIn">in</a>
+          <a href="#" class="social-btn" title="Instagram">IG</a>
+          <a href="#" class="social-btn" title="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="#">Caregiver</a></li>
+          <li><a href="#">Tokutei Ginou</a></li>
+          <li><a href="#">Magang Jepang</a></li>
+          <li><a href="#">Lihat Semua Loker</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Lokasi Kami</h4>
+        <p class="footer-address">
+          Jl. Tanjung, Celep<br>
+          Kedawung, Sragen<br>
+          Jawa Tengah, Indonesia
+        </p>
+        <ul>
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#">Why Indonesia</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 PT Hashimoto Indo Trust. Hak cipta dilindungi.</span>
+      <span>Designed with precision · Built for trust</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+
+// Navbar scroll effect
+window.addEventListener('scroll',function(){
+  var nav=document.getElementById('navbar');
+  if(window.scrollY>30){
+    nav.style.height='58px';
+    nav.style.padding='0 5%';
+  } else {
+    nav.style.height='68px';
+  }
+});
+
+// Button ripple micro-interaction
+document.querySelectorAll('.btn-primary,.btn-secondary,.btn-prog,.btn-lihat,.nav-cta,.btn-prog').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    var r=document.createElement('span');
+    var rect=btn.getBoundingClientRect();
+    var x=e.clientX-rect.left;
+    var y=e.clientY-rect.top;
+    r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);width:0;height:0;left:'+x+'px;top:'+y+'px;transform:translate(-50%,-50%);animation:ripple 0.5s ease-out forwards;pointer-events:none;';
+    btn.style.position='relative';
+    btn.style.overflow='hidden';
+    btn.appendChild(r);
+    setTimeout(function(){r.remove()},500);
+  });
+});
+
+// Card entrance animation
+var style=document.createElement('style');
+style.textContent='@keyframes ripple{to{width:200px;height:200px;opacity:0}} @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}} .prog-card,.sektor-card,.testi-card,.hero-stat{animation:fadeUp 0.5s ease forwards} .prog-card:nth-child(1){animation-delay:0.1s} .prog-card:nth-child(2){animation-delay:0.2s} .prog-card:nth-child(3){animation-delay:0.3s}';
+document.head.appendChild(style);
+</script>
