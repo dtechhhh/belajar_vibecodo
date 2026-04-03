@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT. Hashimoto Indo Trust — LPK Japan Placement</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1F4B;--navy2:#122560;--navy3:#1a3070;
+  --gold:#C9A84C;--gold2:#E2C06A;--gold3:#f5d98b;
+  --white:#FAFAF8;--gray:#F4F3EE;--text:#0B1F4B;
+  --muted:#5a6a8a;--border:#e2ddd0;--red:#E03A3A;
+  --banner-h:44px;--nav-h:68px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+/* ===== LANG TOGGLE ===== */
+.lang-toggle{display:flex;align-items:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:6px;overflow:hidden}
+.lang-btn{padding:6px 11px;cursor:pointer;color:rgba(255,255,255,0.45);transition:all 0.2s;border:none;background:transparent;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;font-family:'Plus Jakarta Sans',sans-serif}
+.lang-btn.active{background:var(--gold);color:var(--navy)}
+.lang-btn:hover:not(.active){color:rgba(255,255,255,0.8)}
+
+/* ===== ANNOUNCEMENT BANNER ===== */
+.announcement-banner{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--banner-h);
+  background:linear-gradient(90deg,#9a7a2a 0%,var(--gold) 40%,#c9a840 70%,#9a7a2a 100%);
+  background-size:200% auto;
+  animation:shimmerBanner 5s linear infinite;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 5%;
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),opacity 0.35s ease;
+  cursor:pointer;
+}
+.announcement-banner.hidden{transform:translateY(-100%);opacity:0;pointer-events:none}
+.announcement-banner.dismissed{display:none!important}
+@keyframes shimmerBanner{0%{background-position:0% center}100%{background-position:200% center}}
+.banner-inner{display:flex;align-items:center;gap:10px;max-width:1200px;width:100%;justify-content:center;position:relative}
+.banner-dot{width:7px;height:7px;border-radius:50%;background:var(--navy);animation:pulseDot 1.8s ease-in-out infinite;flex-shrink:0}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+.banner-text{font-size:0.78rem;font-weight:700;color:var(--navy);letter-spacing:0.03em;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.banner-tag{background:rgba(11,31,75,0.15);border-radius:4px;padding:2px 10px;font-weight:800;letter-spacing:0.06em;font-size:0.7rem;color:var(--navy)}
+.banner-arrow{display:inline-flex;align-items:center;background:var(--navy);color:var(--gold2);border-radius:4px;padding:2px 10px;font-weight:800;font-size:0.7rem;transition:transform 0.2s}
+.announcement-banner:hover .banner-arrow{transform:translateX(3px)}
+.banner-dismiss{position:absolute;right:0;background:none;border:none;color:rgba(11,31,75,0.5);font-size:1rem;cursor:pointer;padding:4px 8px;border-radius:4px;line-height:1;transition:all 0.2s}
+.banner-dismiss:hover{background:rgba(11,31,75,0.15);color:var(--navy)}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;top:var(--banner-h);left:0;right:0;z-index:100;
+  background:rgba(11,31,75,0.97);backdrop-filter:blur(12px);
+  padding:0 5%;display:flex;align-items:center;justify-content:space-between;
+  height:var(--nav-h);border-bottom:1px solid rgba(201,168,76,0.2);
+  transition:top 0.35s cubic-bezier(0.4,0,0.2,1),height 0.3s;gap:1rem;
+}
+nav.banner-hidden{top:0}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-logo-img{height:42px;width:auto;filter:brightness(0) invert(1) drop-shadow(0 0 8px rgba(201,168,76,0.3));transition:filter 0.3s}
+.nav-logo:hover .nav-logo-img{filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg) drop-shadow(0 0 10px rgba(201,168,76,0.5))}
+.nav-logo-text{font-family:'DM Serif Display',serif;color:var(--gold2);font-size:1.1rem;letter-spacing:0.02em;line-height:1.2}
+.nav-logo-text small{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.62rem;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{color:rgba(255,255,255,0.75);font-size:0.85rem;font-weight:500;text-decoration:none;letter-spacing:0.02em;transition:color 0.25s;position:relative;white-space:nowrap}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--gold);transform:scaleX(0);transition:transform 0.25s;transform-origin:left}
+.nav-links a:hover{color:var(--gold2)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links .nav-jobs{color:var(--gold2);font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.nav-jobs .jobs-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulseDot 2s infinite;flex-shrink:0}
+.nav-jobs::after{display:none!important}
+.nav-jobs:hover{color:var(--gold3)!important}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-cta{background:var(--gold);color:var(--navy);padding:9px 20px;border-radius:6px;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;border:none;cursor:pointer;white-space:nowrap}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--gold2);border-radius:2px;transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;left:0;right:0;background:rgba(11,31,75,0.98);backdrop-filter:blur(12px);padding:1.5rem 5%;flex-direction:column;gap:1.25rem;border-bottom:1px solid rgba(201,168,76,0.2);z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:1rem;font-weight:500;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.mobile-menu a:hover{color:var(--gold2)}
+.mobile-menu .mob-jobs{color:var(--gold2)!important;font-weight:700!important}
+.mobile-lang{display:flex;gap:8px;padding:0.5rem 0}
+
+/* ===== PAGE OFFSET ===== */
+.page-top-offset{height:calc(var(--banner-h) + var(--nav-h))}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:60px 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);padding:7px 16px;border-radius:100px;font-size:0.72rem;font-weight:700;color:var(--gold2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,4.5vw,3.6rem);color:var(--white);line-height:1.15;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero-sub{color:rgba(255,255,255,0.55);font-size:0.98rem;line-height:1.8;margin-bottom:2rem;max-width:440px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--navy);padding:13px 28px;border-radius:8px;font-weight:700;font-size:0.88rem;letter-spacing:0.04em;border:none;cursor:pointer;text-decoration:none;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.3)}
+.btn-secondary{background:transparent;color:var(--white);padding:13px 28px;border-radius:8px;font-weight:600;font-size:0.88rem;border:1.5px solid rgba(255,255,255,0.2);cursor:pointer;text-decoration:none;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
+.hero-status{display:inline-flex;align-items:center;gap:8px;margin-top:1.25rem;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:100px;padding:6px 14px;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.55)}
+.hero-status-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;flex-shrink:0}
+
+/* Hero Visual */
+.hero-visual{display:flex;flex-direction:column;gap:1rem}
+.hero-slideshow{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08)}
+.hero-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;opacity:0;transition:opacity 0.7s ease;background:linear-gradient(135deg,rgba(201,168,76,0.05),rgba(255,255,255,0.02))}
+.hero-slide.active{opacity:1}
+.hero-slide-label{font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.25);letter-spacing:0.14em;text-transform:uppercase}
+.hero-dots{display:flex;gap:6px;justify-content:center;margin-top:4px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.3s;border:none;padding:0}
+.hero-dot.active{background:var(--gold);width:20px;border-radius:3px}
+.hero-stats-row{display:flex;gap:1rem}
+.hero-stat{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.25rem;transition:all 0.3s}
+.hero-stat:hover{background:rgba(255,255,255,0.07);border-color:rgba(201,168,76,0.3);transform:translateY(-3px)}
+.hero-stat .num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--gold2);display:block;margin-bottom:4px}
+.hero-stat .lbl{font-size:0.75rem;color:rgba(255,255,255,0.45);font-weight:500;line-height:1.4}
+
+/* ===== JOBS SECTION ===== */
+.jobs-section{background:var(--navy);padding:70px 5%}
+.jobs-inner{max-width:1200px;margin:0 auto}
+.jobs-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.jobs-label{font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.jobs-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--white);line-height:1.25}
+.jobs-live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:100px;padding:5px 12px;font-size:0.7rem;font-weight:700;color:#86efac;letter-spacing:0.06em}
+.jobs-live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulseDot 1.8s infinite;flex-shrink:0}
+.jobs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.job-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.5rem;cursor:pointer;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;gap:0.75rem}
+.job-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.06),transparent);opacity:0;transition:opacity 0.3s}
+.job-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.job-card:hover::before{opacity:1}
+.job-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem}
+.job-company{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.job-title{font-size:0.95rem;font-weight:700;color:var(--white);line-height:1.35}
+.job-badge{flex-shrink:0;font-size:0.62rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px}
+.job-badge.hot{background:rgba(201,168,76,0.15);color:var(--gold2);border:1px solid rgba(201,168,76,0.3)}
+.job-badge.new{background:rgba(74,222,128,0.12);color:#86efac;border:1px solid rgba(74,222,128,0.25)}
+.job-badge.urgent{background:rgba(239,68,68,0.12);color:#fca5a5;border:1px solid rgba(239,68,68,0.25)}
+.job-meta{display:flex;flex-wrap:wrap;gap:6px}
+.job-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 9px}
+.job-card-footer{margin-top:auto;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between}
+.job-salary{font-size:0.8rem;font-weight:700;color:var(--gold2)}
+.job-cta{font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:4px;transition:color 0.2s}
+.job-card:hover .job-cta{color:var(--gold2)}
+.jobs-view-all{text-align:center;margin-top:1.75rem}
+.btn-view-all{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);padding:11px 28px;border-radius:8px;font-size:0.82rem;font-weight:600;text-decoration:none;letter-spacing:0.04em;transition:all 0.25s;cursor:pointer}
+.btn-view-all:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-1px)}
+
+/* ===== STATS BAR ===== */
+.stats-bar{background:var(--navy);padding:50px 5%;border-top:1px solid rgba(255,255,255,0.06)}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-item .stat-num{font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--gold2);display:block;margin-bottom:6px}
+.stat-item .stat-lbl{font-size:0.8rem;color:rgba(255,255,255,0.55);letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+
+/* ===== SECTIONS COMMON ===== */
+section{padding:90px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--navy);line-height:1.2;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.8;max-width:540px}
+.section-header{margin-bottom:3rem}
+
+/* ===== PROGRAM ===== */
+.program-section{background:var(--white)}
+.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prog-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer}
+.prog-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--navy),var(--navy2));opacity:0;transition:opacity 0.35s;border-radius:20px}
+.prog-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(11,31,75,0.12);border-color:var(--navy)}
+.prog-card:hover::before{opacity:1}
+.prog-card:hover .prog-icon-wrap{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.4)}
+.prog-card:hover .prog-title,.prog-card:hover .prog-desc,.prog-card:hover .prog-count{color:rgba(255,255,255,0.9)!important}
+.prog-card:hover .prog-title{color:var(--gold2)!important}
+.prog-card:hover .btn-prog{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.prog-card>*{position:relative;z-index:1}
+.prog-icon-wrap{width:52px;height:52px;border-radius:14px;background:var(--gray);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.4rem;transition:all 0.3s}
+.prog-title{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:0.6rem;transition:color 0.3s}
+.prog-desc{font-size:0.875rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;transition:color 0.3s}
+.prog-count{font-size:0.78rem;font-weight:600;color:var(--gold);letter-spacing:0.05em;margin-bottom:1.25rem;transition:color 0.3s}
+.btn-prog{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:0.82rem;font-weight:700;border:1.5px solid var(--navy);color:var(--navy);background:transparent;cursor:pointer;letter-spacing:0.03em;transition:all 0.25s;text-decoration:none}
+
+/* ===== SEKTOR ===== */
+.sektor-section{background:var(--gray)}
+.sektor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.sektor-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;position:relative}
+.sektor-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(11,31,75,0.1);border-color:var(--navy)}
+.sektor-img{width:100%;height:130px;background:var(--gray);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.sektor-img-bg{width:100%;height:130px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;transition:transform 0.4s}
+.sektor-card:hover .sektor-img-bg{transform:scale(1.1)}
+.sektor-body{padding:1rem}
+.sektor-name{font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:0.4rem}
+.sektor-demand{font-size:0.75rem;color:var(--muted)}
+.btn-lihat{display:block;margin:0.75rem 1rem 1rem;padding:8px;border-radius:7px;font-size:0.78rem;font-weight:700;border:1.5px solid var(--border);color:var(--navy);background:transparent;cursor:pointer;text-align:center;transition:all 0.25s;text-decoration:none;letter-spacing:0.03em}
+.sektor-card:hover .btn-lihat{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.badge-hot{position:absolute;top:10px;right:10px;background:var(--gold);color:var(--navy);font-size:0.65rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 2px 8px rgba(201,168,76,0.4)}
+.sektor-card.featured{border-color:var(--gold);border-width:2px}
+.sektor-card.featured .sektor-name{color:var(--gold)}
+
+/* ===== BATCH / REKRUTMEN ===== */
+.batch-section{background:linear-gradient(135deg,var(--navy) 0%,#1a3070 50%,#0d2855 100%);padding:80px 5%;position:relative;overflow:hidden}
+.batch-section::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 60%);pointer-events:none}
+.batch-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.batch-content .section-title{color:var(--white)}
+.batch-content .section-sub{color:rgba(255,255,255,0.55)}
+.batch-features{display:flex;flex-direction:column;gap:1rem;margin:2rem 0}
+.batch-feat{display:flex;align-items:center;gap:12px;font-size:0.9rem;color:rgba(255,255,255,0.75)}
+.batch-feat-icon{width:32px;height:32px;border-radius:8px;background:rgba(201,168,76,0.15);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0}
+.batch-visual{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:2rem;display:flex;flex-direction:column;gap:1.25rem}
+.batch-info-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.25rem;display:flex;align-items:flex-start;gap:1rem}
+.batch-info-icon{width:40px;height:40px;border-radius:10px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.batch-info-title{font-size:0.82rem;font-weight:700;color:var(--gold2);margin-bottom:4px}
+.batch-info-text{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.6}
+.batch-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);padding:13px 28px;border-radius:8px;font-weight:700;font-size:0.88rem;letter-spacing:0.04em;border:none;cursor:pointer;text-decoration:none;transition:all 0.25s}
+.batch-cta:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.35)}
+
+/* ===== USP / TENTANG ===== */
+.testi-section{background:var(--white)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.3s}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(11,31,75,0.08);border-color:var(--navy)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy);padding:60px 5% 30px;color:rgba(255,255,255,0.6)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:2rem}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.footer-logo-img{height:38px;width:auto;filter:brightness(0) invert(1) opacity(0.7)}
+.footer-logo-text{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--gold2);line-height:1.3}
+.footer-logo-text small{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.6rem;font-weight:600;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase}
+.footer-desc{font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem}
+.footer-kumiai{display:flex;align-items:flex-start;gap:10px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.15);border-radius:10px;padding:12px 14px;margin-bottom:1.25rem}
+.footer-kumiai-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+.footer-kumiai-text{font-size:0.75rem;color:rgba(255,255,255,0.5);line-height:1.6}
+.footer-kumiai-text strong{color:var(--gold2);display:block;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px}
+.footer-social{display:flex;gap:10px}
+.social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.8rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.25s}
+.social-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold);transform:translateY(-2px)}
+.footer-col h4{font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold2);margin-bottom:1.25rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.6rem}
+.footer-col ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold2)}
+.footer-address{font-size:0.82rem;line-height:1.9;margin-bottom:1rem}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;font-size:0.78rem}
+.footer-bottom span{color:rgba(255,255,255,0.3)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .program-grid{grid-template-columns:repeat(2,1fr)}
+  .sektor-grid{grid-template-columns:repeat(3,1fr)}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .batch-inner{grid-template-columns:1fr}
+  .jobs-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta,.lang-toggle{display:none}
+  .hamburger{display:flex}
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .program-grid{grid-template-columns:1fr}
+  .sektor-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr}
+  section{padding:60px 5%}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+  .jobs-grid{grid-template-columns:1fr}
+  .hero-stats-row{flex-direction:column}
+}
+@media(max-width:480px){
+  .sektor-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes ripple{to{width:200px;height:200px;opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.prog-card,.sektor-card,.testi-card,.hero-stat,.job-card{animation:fadeUp 0.5s ease forwards}
+.prog-card:nth-child(1),.job-card:nth-child(1){animation-delay:0.05s}
+.prog-card:nth-child(2),.job-card:nth-child(2){animation-delay:0.1s}
+.prog-card:nth-child(3),.job-card:nth-child(3){animation-delay:0.15s}
+.job-card:nth-child(4){animation-delay:0.2s}
+.job-card:nth-child(5){animation-delay:0.25s}
+.job-card:nth-child(6){animation-delay:0.3s}
+
+/* ===== HERO SLIDE PHOTO ===== */
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;overflow:hidden;border-radius:20px}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,31,75,0.75) 0%,rgba(11,31,75,0.2) 60%,transparent 100%)}
+.hero-slide-caption{position:absolute;bottom:18px;left:18px;right:18px}
+.hero-slide-label{font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:0.1em;text-transform:uppercase;background:rgba(11,31,75,0.5);backdrop-filter:blur(6px);padding:6px 12px;border-radius:6px;display:inline-block;border:1px solid rgba(255,255,255,0.1)}
+
+/* ===== SEKTOR PHOTO ===== */
+.sektor-img{width:100%;height:130px;overflow:hidden;position:relative}
+.sektor-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease}
+.sektor-card:hover .sektor-img img{transform:scale(1.07)}
+.sektor-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(11,31,75,0.3))}
+
+/* ===== STATS BAR ===== */
+.stats-bar{background:linear-gradient(90deg,var(--navy) 0%,var(--navy2) 50%,var(--navy) 100%);padding:48px 5%;border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15)}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-item .stat-num{font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--gold2);display:block;margin-bottom:6px}
+.stat-item .stat-lbl{font-size:0.8rem;color:rgba(255,255,255,0.55);letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+.stat-item{position:relative;padding:0 1rem}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);height:40px;width:1px;background:rgba(255,255,255,0.1)}
+
+/* ===== TRUST BADGES ===== */
+.trust-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.25rem}
+.trust-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.18);border-radius:6px;padding:5px 10px;font-size:0.68rem;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:0.04em}
+.trust-badge svg{color:var(--gold);flex-shrink:0}
+.footer-legal{font-size:0.72rem;color:rgba(255,255,255,0.28);line-height:1.9;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.07)}
+
+/* ===== FAQ SECTION ===== */
+.faq-section{background:var(--gray);padding:90px 5%}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.25s}
+.faq-item.open{border-color:var(--navy)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;gap:1rem;user-select:none}
+.faq-q-text{font-size:0.9rem;font-weight:700;color:var(--navy);line-height:1.4}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--gray);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s;font-size:0.8rem;color:var(--navy)}
+.faq-item.open .faq-icon{background:var(--navy);color:var(--gold2);transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s}
+.faq-a-inner{padding:0 1.5rem 1.25rem;font-size:0.875rem;color:var(--muted);line-height:1.8}
+.faq-item.open .faq-a{max-height:300px}
+.faq-cta-wrap{text-align:center;margin-top:2.5rem}
+.faq-cta-note{font-size:0.85rem;color:var(--muted);margin-bottom:1rem}
+
+/* ===== FLOATING WHATSAPP ===== */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-bubble{background:#25D366;color:#fff;border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:10px;font-size:0.82rem;font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,0.4);transition:all 0.3s;white-space:nowrap}
+.wa-bubble:hover{background:#20bc5a;transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,211,102,0.5)}
+.wa-icon{width:24px;height:24px;flex-shrink:0}
+.wa-tooltip{background:var(--navy);color:var(--gold2);font-size:0.72rem;font-weight:600;padding:6px 12px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:all 0.2s;pointer-events:none;text-align:center}
+.wa-float:hover .wa-tooltip{opacity:1;transform:translateY(0)}
+@media(max-width:480px){.wa-bubble span{display:none}.wa-bubble{padding:14px;border-radius:50%}.wa-icon{width:28px;height:28px}}
+
+/* ===== RESPONSIVE UPDATES ===== */
+@media(max-width:768px){.faq-grid{grid-template-columns:1fr}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div class="announcement-banner" id="announcementBanner">
+  <div class="banner-inner">
+    <div class="banner-dot"></div>
+    <div class="banner-text" data-id="banner-text">
+      <span class="banner-tag">🎌 Rekrutmen Aktif</span>
+      Hashimoto Indo Trust kini membuka seleksi kandidat batch perdana — posisi terbatas.
+      <span class="banner-arrow">Lihat Posisi →</span>
+    </div>
+    <button class="banner-dismiss" id="bannerDismiss" title="Tutup">✕</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <svg class="nav-logo-img" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="110" r="70" stroke="white" stroke-width="5" fill="none" opacity="0.9"/>
+      <ellipse cx="100" cy="110" rx="45" ry="70" stroke="white" stroke-width="3.5" fill="none" opacity="0.7"/>
+      <ellipse cx="100" cy="110" rx="70" ry="30" stroke="white" stroke-width="3" fill="none" opacity="0.6"/>
+      <line x1="30" y1="110" x2="170" y2="110" stroke="white" stroke-width="3" opacity="0.6"/>
+      <line x1="100" y1="40" x2="100" y2="180" stroke="white" stroke-width="3" opacity="0.6"/>
+      <ellipse cx="88" cy="122" rx="18" ry="8" fill="white" opacity="0.5"/>
+      <ellipse cx="115" cy="118" rx="12" ry="6" fill="white" opacity="0.4"/>
+      <text x="100" y="116" text-anchor="middle" fill="white" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="22" letter-spacing="3" opacity="0.95">HIT</text>
+      <path d="M 50 45 A 90 90 0 0 1 175 85" stroke="#E84040" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.85"/>
+      <path d="M 30 130 A 90 90 0 0 0 170 130" stroke="white" stroke-width="3" fill="none" stroke-dasharray="5 6" opacity="0.4"/>
+      <g transform="translate(155,48) rotate(-30)">
+        <path d="M0,0 L-18,6 L-14,0 L-18,-6 Z" fill="#E84040" opacity="0.9"/>
+        <path d="M-8,-2 L-12,-8 L-16,-6 L-13,-2 Z" fill="#E84040" opacity="0.7"/>
+        <path d="M-10,2 L-14,8 L-18,6 L-15,2 Z" fill="#E84040" opacity="0.7"/>
+      </g>
+    </svg>
+    <div class="nav-logo-text">
+      Hashimoto Indo Trust
+      <small data-id="nav-tagline">LPK Jepang Terpercaya</small>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <a href="#home" data-id="nav-home">Home</a>
+    <a href="#program" data-id="nav-program">Program</a>
+    <a href="#jobs" class="nav-jobs" data-id="nav-jobs"><span class="jobs-dot"></span> Karir di Jepang</a>
+    <a href="#sektor" data-id="nav-sektor">Sektor Kerja</a>
+    <a href="#faq">FAQ</a>
+    <a href="#tentang" data-id="nav-tentang">Tentang Kami</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnID" onclick="setLang('id')">ID</button>
+      <button class="lang-btn" id="btnJP" onclick="setLang('jp')">JP</button>
+    </div>
+    <a class="nav-cta" href="#batch" data-id="nav-cta">Daftar Sekarang</a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" data-id="mob-home">Home</a>
+  <a href="#program" data-id="mob-program">Program</a>
+  <a href="#jobs" class="mob-jobs" data-id="mob-jobs">🟢 Karir di Jepang</a>
+  <a href="#sektor" data-id="mob-sektor">Sektor Kerja</a>
+  <a href="#tentang" data-id="mob-tentang">Tentang Kami</a>
+  <div class="mobile-lang">
+    <button class="lang-btn active" style="padding:8px 16px;border-radius:6px;font-size:0.8rem" onclick="setLang('id');toggleMenu()">🇮🇩 Indonesia</button>
+    <button class="lang-btn" style="padding:8px 16px;border-radius:6px;font-size:0.8rem" onclick="setLang('jp');toggleMenu()">🇯🇵 日本語</button>
+  </div>
+  <a href="#batch" style="color:var(--gold2);font-weight:700" data-id="mob-cta">Daftar Sekarang →</a>
+</div>
+
+<div class="page-top-offset" id="pageOffset"></div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge" data-id="hero-badge">✦ LPK DENGAN KONEKSI LANGSUNG JEPANG</div>
+      <h1 data-id="hero-h1">Karir Jepang<br>Dimulai dari<br><em>Pilihan Tepat.</em></h1>
+      <p class="hero-sub" data-id="hero-p">Program terstruktur, koneksi langsung ke perusahaan Jepang, dan pendampingan penuh dari hari pertama hingga keberangkatan.</p>
+      <div class="hero-btns">
+        <a href="#jobs" class="btn-primary" data-id="hero-btn1">Lihat Lowongan →</a>
+        <a href="#program" class="btn-secondary" data-id="hero-btn2">Lihat Program</a>
+      </div>
+      <div class="hero-status">
+        <div class="hero-status-dot"></div>
+        <span data-id="open-label">Pendaftaran Batch Pertama Dibuka</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-slideshow" id="heroSlideshow">
+        <div class="hero-slide active" id="slide-0">
+          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80&auto=format&fit=crop" alt="Tokyo kehidupan kerja" loading="eager">
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-caption"><span class="hero-slide-label" data-id="img-placeholder">Kehidupan & Karir di Jepang</span></div>
+        </div>
+        <div class="hero-slide" id="slide-1">
+          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80&auto=format&fit=crop" alt="Mitra Perusahaan Jepang" loading="lazy">
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-caption"><span class="hero-slide-label">Mitra Perusahaan Jepang</span></div>
+        </div>
+        <div class="hero-slide" id="slide-2">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80&auto=format&fit=crop" alt="Program Caregiver Bersertifikasi" loading="lazy">
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-caption"><span class="hero-slide-label">Program Caregiver Bersertifikasi</span></div>
+        </div>
+        <div class="hero-slide" id="slide-3">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop" alt="Koneksi Langsung via Kumiai" loading="lazy">
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-caption"><span class="hero-slide-label">Koneksi Langsung via Kumiai</span></div>
+        </div>
+      </div>
+      <div class="hero-dots" id="heroDots">
+        <button class="hero-dot active" onclick="goToSlide(0)"></button>
+        <button class="hero-dot" onclick="goToSlide(1)"></button>
+        <button class="hero-dot" onclick="goToSlide(2)"></button>
+        <button class="hero-dot" onclick="goToSlide(3)"></button>
+      </div>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <span class="num">10+</span>
+          <span class="lbl" data-id="stat1-lbl">Mitra Perusahaan Jepang</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">3</span>
+          <span class="lbl" data-id="stat2-lbl">Program Unggulan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOBS SECTION -->
+<section class="jobs-section" id="jobs">
+  <div class="jobs-inner">
+    <div class="jobs-header">
+      <div>
+        <div class="jobs-label" data-id="jobs-label">Karir di Jepang</div>
+        <div class="jobs-title" data-id="jobs-title">Posisi yang Sedang<br>Direkrut Mitra Kami</div>
+      </div>
+      <div class="jobs-live-badge">
+        <span class="jobs-live-dot"></span>
+        <span data-id="jobs-live">Live — Diperbarui Berkala</span>
+      </div>
+    </div>
+    <div class="jobs-grid">
+      <a href="#" class="job-card">
+        <div class="job-card-top">
+          <div><div class="job-company">Yamamoto Seisakusho</div><div class="job-title">Tenaga Caregiver — Fasilitas Lansia</div></div>
+          <span class="job-badge hot">Populer</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag">🏥 Caregiver</span>
+          <span class="job-tag">📍 Osaka</span>
+          <span class="job-tag">⏱ 3 Tahun</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="job-salary">¥180,000 – ¥220,000 / bln</span>
+          <span class="job-cta">Detail →</span>
+        </div>
+      </a>
+      <a href="#" class="job-card">
+        <div class="job-card-top">
+          <div><div class="job-company">Hashimoto Industries</div><div class="job-title">Operator Produksi — Lini Perakitan</div></div>
+          <span class="job-badge new">Baru</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag">⚙️ Manufaktur</span>
+          <span class="job-tag">📍 Aichi</span>
+          <span class="job-tag">⏱ Tokutei Ginou</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="job-salary">¥200,000 – ¥250,000 / bln</span>
+          <span class="job-cta">Detail →</span>
+        </div>
+      </a>
+      <a href="#" class="job-card">
+        <div class="job-card-top">
+          <div><div class="job-company">Fujita Techno</div><div class="job-title">Staf Dapur & Pelayanan Restoran</div></div>
+          <span class="job-badge urgent">Mendesak</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag">🍜 Restoran</span>
+          <span class="job-tag">📍 Tokyo</span>
+          <span class="job-tag">⏱ Tokutei Ginou</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="job-salary">¥175,000 – ¥210,000 / bln</span>
+          <span class="job-cta">Detail →</span>
+        </div>
+      </a>
+      <a href="#" class="job-card">
+        <div class="job-card-top">
+          <div><div class="job-company">Nakamura Motors</div><div class="job-title">Teknisi Perawatan Kendaraan</div></div>
+          <span class="job-badge hot">Populer</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag">🔧 Mekanik</span>
+          <span class="job-tag">📍 Nagoya</span>
+          <span class="job-tag">⏱ Magang 3 Thn</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="job-salary">¥165,000 – ¥200,000 / bln</span>
+          <span class="job-cta">Detail →</span>
+        </div>
+      </a>
+      <a href="#" class="job-card">
+        <div class="job-card-top">
+          <div><div class="job-company">Suzuki Kōgyō</div><div class="job-title">Staf Konstruksi — Proyek Infrastruktur</div></div>
+          <span class="job-badge new">Baru</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag">🏗️ Konstruksi</span>
+          <span class="job-tag">📍 Saitama</span>
+          <span class="job-tag">⏱ Tokutei Ginou</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="job-salary">¥195,000 – ¥240,000 / bln</span>
+          <span class="job-cta">Detail →</span>
+        </div>
+      </a>
+      <a href="#" class="job-card">
+        <div class="job-card-top">
+          <div><div class="job-company">Tanaka Electronics</div><div class="job-title">Staf Produksi Komponen Elektronik</div></div>
+          <span class="job-badge hot">Populer</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag">⚡ Elektronik</span>
+          <span class="job-tag">📍 Kanagawa</span>
+          <span class="job-tag">⏱ Magang 3 Thn</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="job-salary">¥170,000 – ¥215,000 / bln</span>
+          <span class="job-cta">Detail →</span>
+        </div>
+      </a>
+    </div>
+    <div class="jobs-view-all">
+      <a href="#" class="btn-view-all" data-id="jobs-view-all">Lihat Semua Lowongan <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-lbl" data-id="stat-3">Program Resmi</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">10+</span>
+      <span class="stat-lbl" data-id="stat-2">Mitra Perusahaan Jepang</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <span class="stat-lbl" data-id="stat-4">Sektor Kerja Tersedia</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">0</span>
+      <span class="stat-lbl" data-id="stat-1">Biaya Pendaftaran</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<section class="program-section" id="program">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag" data-id="prog-tag">Program Unggulan</span>
+      <h2 class="section-title" data-id="prog-title">Pilih Jalur Karir<br>Terbaik Anda</h2>
+      <p class="section-sub" data-id="prog-sub">Tiga program terstruktur dirancang untuk mempersiapkan Anda menuju Jepang dengan percaya diri — didukung koneksi langsung ke perusahaan Jepang.</p>
+    </div>
+    <div class="program-grid">
+      <div class="prog-card">
+        <div class="prog-icon-wrap">🏥</div>
+        <div class="prog-count" data-id="prog1-count">● Program Caregiver · Kuota Terbatas</div>
+        <div class="prog-title" data-id="prog1-title">Caregiver</div>
+        <div class="prog-desc" data-id="prog1-desc">Program pelatihan tenaga pendamping lansia untuk bekerja di fasilitas kesehatan dan rumah perawatan Jepang.</div>
+        <a href="#" class="btn-prog" data-id="prog1-btn">Lihat Program <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon-wrap">🏭</div>
+        <div class="prog-count" data-id="prog2-count">● Tokutei Ginou · Visa Kerja Spesialis</div>
+        <div class="prog-title" data-id="prog2-title">Tokutei Ginou</div>
+        <div class="prog-desc" data-id="prog2-desc">Visa kerja spesialis bidang manufaktur, konstruksi, dan sektor industri strategis di Jepang.</div>
+        <a href="#" class="btn-prog" data-id="prog2-btn">Lihat Program <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon-wrap">🎓</div>
+        <div class="prog-count" data-id="prog3-count">● Program Magang · 3 Tahun Resmi</div>
+        <div class="prog-title" data-id="prog3-title">Magang Jepang</div>
+        <div class="prog-desc" data-id="prog3-desc">Program magang resmi 3 tahun dengan pelatihan bahasa Jepang intensif dan penempatan langsung ke perusahaan mitra.</div>
+        <a href="#" class="btn-prog" data-id="prog3-btn">Lihat Program <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BATCH / REKRUTMEN CTA -->
+<section class="batch-section" id="batch">
+  <div class="batch-inner">
+    <div class="batch-content">
+      <span class="section-tag" data-id="batch-tag">🎌 Seleksi Kandidat</span>
+      <h2 class="section-title" data-id="batch-title">Bergabung dalam<br><em style="font-style:italic;color:var(--gold2)">Program Penempatan HIT</em></h2>
+      <p class="section-sub" data-id="batch-sub">PT Hashimoto Indo Trust membuka seleksi kandidat terbaik untuk ditempatkan langsung ke mitra perusahaan dan lembaga kumiai Jepang — proses transparan, terdokumentasi, dan sesuai regulasi ketenagakerjaan internasional.</p>
+      <div class="batch-features">
+        <div class="batch-feat"><div class="batch-feat-icon">🤝</div><span data-id="feat1">Penempatan langsung ke mitra perusahaan dan kumiai Jepang</span></div>
+        <div class="batch-feat"><div class="batch-feat-icon">📋</div><span data-id="feat2">Proses seleksi terstruktur, transparan, dan terdokumentasi</span></div>
+        <div class="batch-feat"><div class="batch-feat-icon">📜</div><span data-id="feat3">Pelatihan Bahasa Jepang N4 beserta sertifikasi resmi</span></div>
+        <div class="batch-feat"><div class="batch-feat-icon">💴</div><span data-id="feat4">Remunerasi kompetitif sesuai standar ketenagakerjaan Jepang</span></div>
+      </div>
+      <a href="#" class="batch-cta" data-id="batch-cta">Ajukan Lamaran Sekarang →</a>
+    </div>
+    <div class="batch-visual">
+      <div class="batch-info-card">
+        <div class="batch-info-icon">📅</div>
+        <div><div class="batch-info-title" data-id="batch-info1-title">Periode Seleksi</div><div class="batch-info-text" data-id="batch-info1-text">Pendaftaran dibuka mulai 2025. Seleksi administrasi, wawancara, dan pelatihan pra-keberangkatan dilaksanakan secara bertahap.</div></div>
+      </div>
+      <div class="batch-info-card">
+        <div class="batch-info-icon">📝</div>
+        <div><div class="batch-info-title" data-id="batch-info2-title">Persyaratan Umum</div><div class="batch-info-text" data-id="batch-info2-text">WNI usia 18–35 tahun, sehat jasmani dan rohani, bersedia mengikuti pelatihan bahasa Jepang intensif, serta berkomitmen menjalankan kontrak kerja.</div></div>
+      </div>
+      <div class="batch-info-card">
+        <div class="batch-info-icon">✅</div>
+        <div><div class="batch-info-title" data-id="batch-info3-title">Tanpa Biaya Pendaftaran</div><div class="batch-info-text" data-id="batch-info3-text">Tidak dipungut biaya pada tahap seleksi awal. Seluruh proses dijalankan secara resmi dan sesuai ketentuan Kemnaker RI.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEKTOR -->
+<section class="sektor-section" id="sektor">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag" data-id="sektor-tag">Bidang Penempatan</span>
+      <h2 class="section-title" data-id="sektor-title">Sektor Kerja<br>yang Tersedia</h2>
+      <p class="section-sub" data-id="sektor-sub">Berbagai bidang pekerjaan dengan permintaan tinggi dari mitra perusahaan dan kumiai Jepang kami.</p>
+    </div>
+    <div class="sektor-grid">
+      <div class="sektor-card featured">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80&auto=format&fit=crop" alt="Caregiver" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="badge-hot" data-id="hot-badge">Paling Diminati</div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek1-name">Caregiver</div><div class="sektor-demand" data-id="sek1-dem">⭐ Permintaan Sangat Tinggi</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80&auto=format&fit=crop" alt="Restoran Jepang" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek2-name">Restoran</div><div class="sektor-demand" data-id="sek2-dem">Permintaan Tinggi</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn2">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80&auto=format&fit=crop" alt="Konstruksi" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek3-name">Konstruksi</div><div class="sektor-demand" data-id="sek3-dem">Permintaan Tinggi</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn3">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80&auto=format&fit=crop" alt="Manufaktur" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek4-name">Manufaktur</div><div class="sektor-demand" data-id="sek4-dem">Permintaan Stabil</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn4">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&q=80&auto=format&fit=crop" alt="Pertanian" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek5-name">Pertanian</div><div class="sektor-demand" data-id="sek5-dem">Permintaan Berkala</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn5">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80&auto=format&fit=crop" alt="Perhotelan" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek6-name">Perhotelan</div><div class="sektor-demand" data-id="sek6-dem">Permintaan Tinggi</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn6">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&q=80&auto=format&fit=crop" alt="Mekanik Mobil" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek7-name">Mekanik Mobil</div><div class="sektor-demand" data-id="sek7-dem">Permintaan Stabil</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn7">Lihat Job →</a>
+      </div>
+      <div class="sektor-card">
+        <div class="sektor-img">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&q=80&auto=format&fit=crop" alt="Driver" loading="lazy">
+          <div class="sektor-img-overlay"></div>
+        </div>
+        <div class="sektor-body"><div class="sektor-name" data-id="sek8-name">Driver</div><div class="sektor-demand" data-id="sek8-dem">Permintaan Stabil</div></div>
+        <a href="#" class="btn-lihat" data-id="sek-btn8">Lihat Job →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP / TENTANG -->
+<section class="testi-section" id="tentang">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag" data-id="testi-tag">Mengapa Memilih HIT</span>
+      <h2 class="section-title" data-id="testi-title">Dibangun di Atas<br>Kepercayaan & Koneksi</h2>
+      <p class="section-sub" data-id="testi-sub">Fondasi kami dibangun dari jaringan mitra Jepang yang nyata, tim berpengalaman di bidang penempatan kerja internasional, dan komitmen penuh terhadap setiap kandidat — dari hari pertama hingga keberangkatan.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="prog-icon-wrap" style="background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.2)">🤝</div>
+        <div class="prog-title" style="font-size:1rem" data-id="usp1-title">Koneksi Jepang Langsung</div>
+        <div class="prog-desc" data-id="usp1-desc">Beroperasi sebagai entitas resmi yang berafiliasi dengan lembaga kumiai Jepang — bukan agen independen. Kandidat kami terhubung langsung ke kebutuhan nyata mitra kami.</div>
+      </div>
+      <div class="testi-card">
+        <div class="prog-icon-wrap" style="background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.2)">📋</div>
+        <div class="prog-title" style="font-size:1rem" data-id="usp2-title">Proses Transparan</div>
+        <div class="prog-desc" data-id="usp2-desc">Semua biaya, tahapan proses, dan timeline dijelaskan secara terbuka. Tidak ada biaya tersembunyi, tidak ada janji tanpa dasar. Kepercayaan adalah fondasi kami.</div>
+      </div>
+      <div class="testi-card">
+        <div class="prog-icon-wrap" style="background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.2)">🎯</div>
+        <div class="prog-title" style="font-size:1rem" data-id="usp3-title">Pendampingan Menyeluruh</div>
+        <div class="prog-desc" data-id="usp3-desc">Dari persiapan dokumen, pelatihan bahasa Jepang, hingga proses keberangkatan — tim kami mendampingi setiap langkah perjalanan kandidat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Pertanyaan Umum</span>
+      <h2 class="section-title">Yang Sering<br>Ditanyakan</h2>
+      <p class="section-sub">Jawaban atas pertanyaan paling umum dari calon kandidat dan orang tua. Tidak menemukan jawaban? Hubungi kami via WhatsApp.</p>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-text">Apakah ada biaya yang harus dibayar saat mendaftar?</span>
+          <div class="faq-icon">▾</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Tidak ada biaya apapun pada tahap pendaftaran dan seleksi awal. Seluruh tahapan seleksi administrasi dan wawancara awal dilaksanakan tanpa pungutan. Biaya program (jika ada) hanya dikomunikasikan secara tertulis dan transparan setelah kandidat dinyatakan lolos seleksi, sesuai ketentuan Kemnaker RI.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-text">Berapa lama proses dari daftar hingga berangkat ke Jepang?</span>
+          <div class="faq-icon">▾</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Estimasi total proses berkisar antara 6–12 bulan, tergantung program yang diikuti. Proses meliputi seleksi administrasi (2–4 minggu), pelatihan bahasa Jepang intensif (3–6 bulan), pengurusan dokumen & visa (1–3 bulan), hingga pra-keberangkatan. Tim kami akan memberikan timeline spesifik saat onboarding.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-text">Dokumen apa saja yang dibutuhkan untuk mendaftar?</span>
+          <div class="faq-icon">▾</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Dokumen dasar yang diperlukan: KTP, KK, Ijazah terakhir (min. SMP/SMA), Akte Kelahiran, SKCK, Surat Keterangan Sehat dari dokter, dan Paspor (jika sudah punya). Dokumen tambahan seperti sertifikat keahlian akan dikomunikasikan sesuai program yang dipilih. Dokumen belum lengkap? Tetap bisa daftar — kami akan membantu prosesnya.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-text">Apakah akomodasi di Jepang sudah termasuk?</span>
+          <div class="faq-icon">▾</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Ya. Seluruh mitra perusahaan Jepang kami menyediakan akomodasi bersubsidi (asrama/share house) yang dekat dengan lokasi kerja. Biaya akomodasi umumnya dipotong langsung dari gaji dengan nominal yang sangat terjangkau dibandingkan standar biaya hidup di Jepang. Detail biaya spesifik tersedia di masing-masing posting lowongan.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-text">Harus bisa bahasa Jepang dulu sebelum mendaftar?</span>
+          <div class="faq-icon">▾</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Tidak perlu bisa bahasa Jepang saat mendaftar. Pelatihan Bahasa Jepang intensif (target N4/N5) sudah menjadi bagian dari program HIT sebelum keberangkatan. Yang penting adalah motivasi belajar yang kuat dan komitmen mengikuti pelatihan secara penuh. Kemampuan bahasa Jepang dasar sebelumnya akan menjadi nilai tambah.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-text">Apa yang terjadi jika saya tidak lolos seleksi?</span>
+          <div class="faq-icon">▾</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Kandidat yang belum lolos seleksi akan mendapat feedback spesifik dari tim kami mengenai aspek yang perlu ditingkatkan. Banyak kandidat yang berhasil lolos pada batch berikutnya setelah melakukan persiapan lebih matang. Tidak ada penalti atau kewajiban apapun jika tidak lolos, dan tidak ada biaya yang hilang karena pendaftaran memang gratis.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="faq-cta-wrap">
+      <p class="faq-cta-note">Masih punya pertanyaan lain? Tim kami siap menjawab.</p>
+      <a href="https://wa.me/6282xxxxxxxxx?text=Halo%20HIT%2C%20saya%20ingin%20bertanya%20tentang%20program%20penempatan%20Jepang" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.096.541 4.063 1.487 5.778L.057 23.25l5.63-1.48A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.86 0-3.601-.5-5.1-1.37l-.36-.214-3.742.981.999-3.648-.235-.375A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Tanya via WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo-img">
+            <circle cx="100" cy="110" r="70" stroke="white" stroke-width="5" fill="none" opacity="0.5"/>
+            <ellipse cx="100" cy="110" rx="45" ry="70" stroke="white" stroke-width="3.5" fill="none" opacity="0.35"/>
+            <ellipse cx="100" cy="110" rx="70" ry="30" stroke="white" stroke-width="3" fill="none" opacity="0.3"/>
+            <line x1="30" y1="110" x2="170" y2="110" stroke="white" stroke-width="3" opacity="0.3"/>
+            <line x1="100" y1="40" x2="100" y2="180" stroke="white" stroke-width="3" opacity="0.3"/>
+            <text x="100" y="116" text-anchor="middle" fill="white" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="22" letter-spacing="3" opacity="0.6">HIT</text>
+            <path d="M 50 45 A 90 90 0 0 1 175 85" stroke="#E84040" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="footer-logo-text">Hashimoto Indo Trust<small>PT. Hashimoto Indo Trust</small></div>
+        </div>
+        <p class="footer-desc" data-id="footer-desc">PT Hashimoto Indo Trust hadir sebagai mitra resmi lembaga kumiai dan perusahaan Jepang — menjembatani talenta Indonesia menuju peluang kerja yang terstruktur, legal, dan berkelanjutan di Jepang.</p>
+
+        <div class="trust-badges">
+          <span class="trust-badge">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.7L5 7.4l-2.5 1.2.5-2.7L1 4l2.8-.5L5 1z" fill="currentColor"/></svg>
+            Terdaftar Kemnaker RI
+          </span>
+          <span class="trust-badge">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M3 5l1.5 1.5L7 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Proses Resmi & Legal
+          </span>
+          <span class="trust-badge">🇯🇵 Afiliasi Kumiai Jepang</span>
+        </div>
+        <p class="footer-legal">
+          SIPPTKI No. [PLACEHOLDER] &nbsp;·&nbsp; NPWP: [PLACEHOLDER]<br>
+          Izin Operasional Kemnaker RI No. [PLACEHOLDER]
+        </p>
+
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="TikTok">TK</a>
+          <a href="#" class="social-btn" title="Instagram">IG</a>
+          <a href="https://wa.me/6282xxxxxxxxx" class="social-btn" title="WhatsApp">WA</a>
+          <a href="#" class="social-btn" title="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-id="footer-col1-title">Program</h4>
+        <ul>
+          <li><a href="#" data-id="footer-prog1">Caregiver</a></li>
+          <li><a href="#" data-id="footer-prog2">Tokutei Ginou</a></li>
+          <li><a href="#" data-id="footer-prog3">Magang Jepang</a></li>
+          <li><a href="#" data-id="footer-prog4">Lihat Semua Sektor</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-id="footer-col2-title">Lokasi Kami</h4>
+        <p class="footer-address">Jl. Tanjung, Celep<br>Kedawung, Sragen<br>Jawa Tengah, Indonesia</p>
+        <ul>
+          <li><a href="#" data-id="footer-link1">Tentang Kami</a></li>
+          <li><a href="#" data-id="footer-link2">Daftar Sekarang</a></li>
+          <li><a href="#" data-id="footer-link3">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-id="footer-copy">© 2025 PT Hashimoto Indo Trust. Hak cipta dilindungi.</span>
+      <span data-id="footer-slogan">Dibangun dengan Integritas · Terhubung dengan Jepang</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="wa-float">
+  <div class="wa-tooltip">Tanya langsung via WhatsApp 💬</div>
+  <a href="https://wa.me/6282xxxxxxxxx?text=Halo%20HIT%2C%20saya%20tertarik%20dengan%20program%20penempatan%20ke%20Jepang.%20Boleh%20minta%20info%20lebih%20lanjut%3F" class="wa-bubble" target="_blank" rel="noopener" aria-label="Hubungi via WhatsApp">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.096.541 4.063 1.487 5.778L.057 23.25l5.63-1.48A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.86 0-3.601-.5-5.1-1.37l-.36-.214-3.742.981.999-3.648-.235-.375A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+    <span>Tanya Sekarang</span>
+  </a>
+</div>
+
+<script>
+// ===== FAQ TOGGLE =====
+function toggleFaq(item){
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
+  if(!isOpen)item.classList.add('open');
+}
+
+// ===== BANNER LOGIC =====
+var banner=document.getElementById('announcementBanner');
+var navbar=document.getElementById('navbar');
+var mobileMenu=document.getElementById('mobileMenu');
+var pageOffset=document.getElementById('pageOffset');
+var bannerDismissed=false;
+var lastScrollY=0;
+
+function updateMobileMenuTop(){
+  var bH=bannerDismissed?0:44;
+  var nH=parseInt(getComputedStyle(navbar).height)||68;
+  mobileMenu.style.top=(bH+nH)+'px';
+}
+
+document.getElementById('bannerDismiss').addEventListener('click',function(e){
+  e.stopPropagation();
+  banner.classList.add('dismissed');
+  bannerDismissed=true;
+  navbar.classList.add('banner-hidden');
+  document.documentElement.style.setProperty('--banner-h','0px');
+  pageOffset.style.height='68px';
+  updateMobileMenuTop();
+});
+
+banner.addEventListener('click',function(){
+  document.getElementById('jobs').scrollIntoView({behavior:'smooth'});
+});
+
+window.addEventListener('scroll',function(){
+  var y=window.scrollY;
+  if(!bannerDismissed){
+    if(y>80&&y>lastScrollY){
+      banner.classList.add('hidden');
+      navbar.classList.add('banner-hidden');
+    } else if(y<lastScrollY){
+      banner.classList.remove('hidden');
+      navbar.classList.remove('banner-hidden');
+    }
+  }
+  navbar.style.height=y>30?'58px':'68px';
+  lastScrollY=y;
+  updateMobileMenuTop();
+});
+
+// ===== HERO SLIDESHOW =====
+var currentSlide=0;
+var totalSlides=4;
+var slideTimer;
+function goToSlide(i){
+  document.getElementById('slide-'+currentSlide).classList.remove('active');
+  document.querySelectorAll('.hero-dot')[currentSlide].classList.remove('active');
+  currentSlide=i;
+  document.getElementById('slide-'+currentSlide).classList.add('active');
+  document.querySelectorAll('.hero-dot')[currentSlide].classList.add('active');
+  clearInterval(slideTimer);
+  slideTimer=setInterval(function(){goToSlide((currentSlide+1)%totalSlides)},4500);
+}
+slideTimer=setInterval(function(){goToSlide((currentSlide+1)%totalSlides)},4500);
+
+// ===== MOBILE MENU =====
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+// ===== RIPPLE =====
+document.querySelectorAll('.btn-primary,.btn-secondary,.btn-prog,.btn-lihat,.nav-cta,.batch-cta,.btn-view-all').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    var r=document.createElement('span');
+    var rect=btn.getBoundingClientRect();
+    r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);width:0;height:0;left:'+(e.clientX-rect.left)+'px;top:'+(e.clientY-rect.top)+'px;transform:translate(-50%,-50%);animation:ripple 0.5s ease-out forwards;pointer-events:none;';
+    btn.style.position='relative';btn.style.overflow='hidden';
+    btn.appendChild(r);setTimeout(function(){r.remove()},500);
+  });
+});
+
+// ===== TRANSLATIONS =====
+var translations={
+  id:{
+    'nav-tagline':'LPK Jepang Terpercaya','nav-home':'Home','nav-program':'Program',
+    'nav-jobs':'<span class="jobs-dot"></span> Karir di Jepang',
+    'nav-sektor':'Sektor Kerja','nav-tentang':'Tentang Kami','nav-cta':'Daftar Sekarang',
+    'mob-home':'Home','mob-program':'Program','mob-jobs':'🟢 Karir di Jepang',
+    'mob-sektor':'Sektor Kerja','mob-tentang':'Tentang Kami','mob-cta':'Daftar Sekarang →',
+    'banner-text':'<span class="banner-tag">🎌 Rekrutmen Aktif</span> Hashimoto Indo Trust kini membuka seleksi kandidat batch perdana — posisi terbatas. <span class="banner-arrow">Lihat Posisi →</span>',
+    'hero-badge':'✦ Mitra Resmi Lembaga Kumiai Jepang',
+    'hero-h1':'Karir Jepang<br>Dimulai dari<br><em>Pilihan Tepat.</em>',
+    'hero-p':'Program terstruktur, koneksi langsung ke perusahaan Jepang, dan pendampingan penuh dari hari pertama hingga keberangkatan.',
+    'hero-btn1':'Lihat Lowongan →','hero-btn2':'Lihat Program',
+    'stat1-lbl':'Mitra Perusahaan Jepang','stat2-lbl':'Program Unggulan',
+    'img-placeholder':'Kehidupan & Karir di Jepang','open-label':'Pendaftaran Batch Pertama Dibuka',
+    'jobs-label':'Karir di Jepang','jobs-title':'Posisi yang Sedang<br>Direkrut Mitra Kami',
+    'jobs-live':'Live — Diperbarui Berkala','jobs-view-all':'Lihat Semua Lowongan',
+    'stat-1':'Biaya Pendaftaran','stat-2':'Mitra Perusahaan Jepang','stat-3':'Program Resmi','stat-4':'Sektor Kerja Tersedia',
+    'prog-tag':'Program Unggulan','prog-title':'Pilih Jalur Karir<br>Terbaik Anda',
+    'prog-sub':'Tiga program terstruktur dirancang untuk mempersiapkan Anda menuju Jepang dengan percaya diri.',
+    'prog1-count':'● Program Caregiver · Kuota Terbatas','prog1-title':'Caregiver','prog1-btn':'Lihat Program →',
+    'prog1-desc':'Program pelatihan tenaga pendamping lansia untuk bekerja di fasilitas kesehatan dan rumah perawatan Jepang.',
+    'prog2-count':'● Tokutei Ginou · Visa Kerja Spesialis','prog2-title':'Tokutei Ginou','prog2-btn':'Lihat Program →',
+    'prog2-desc':'Visa kerja spesialis bidang manufaktur, konstruksi, dan sektor industri strategis di Jepang.',
+    'prog3-count':'● Program Magang · 3 Tahun Resmi','prog3-title':'Magang Jepang','prog3-btn':'Lihat Program →',
+    'prog3-desc':'Program magang resmi 3 tahun dengan pelatihan bahasa Jepang intensif dan penempatan langsung ke perusahaan mitra.',
+    'batch-tag':'🎌 Seleksi Kandidat',
+    'batch-title':'Bergabung dalam<br><em style="font-style:italic;color:var(--gold2)">Program Penempatan HIT</em>',
+    'batch-sub':'PT Hashimoto Indo Trust membuka seleksi kandidat terbaik untuk ditempatkan langsung ke mitra perusahaan dan lembaga kumiai Jepang — proses transparan, terdokumentasi, dan sesuai regulasi ketenagakerjaan internasional.',
+    'feat1':'Penempatan langsung ke mitra perusahaan dan kumiai Jepang',
+    'feat2':'Proses seleksi terstruktur, transparan, dan terdokumentasi',
+    'feat3':'Pelatihan Bahasa Jepang N4 beserta sertifikasi resmi',
+    'feat4':'Remunerasi kompetitif sesuai standar ketenagakerjaan Jepang',
+    'batch-cta':'Ajukan Lamaran Sekarang →',
+    'batch-info1-title':'Periode Seleksi','batch-info1-text':'Pendaftaran dibuka mulai 2025. Seleksi administrasi, wawancara, dan pelatihan pra-keberangkatan dilaksanakan secara bertahap.',
+    'batch-info2-title':'Persyaratan Umum','batch-info2-text':'WNI usia 18–35 tahun, sehat jasmani dan rohani, bersedia mengikuti pelatihan bahasa Jepang intensif, serta berkomitmen menjalankan kontrak kerja.',
+    'batch-info3-title':'Tanpa Biaya Pendaftaran','batch-info3-text':'Tidak dipungut biaya pada tahap seleksi awal. Seluruh proses dijalankan secara resmi dan sesuai ketentuan Kemnaker RI.',
+    'sektor-tag':'Bidang Penempatan','sektor-title':'Sektor Kerja<br>yang Tersedia',
+    'sektor-sub':'Berbagai bidang pekerjaan dengan permintaan tinggi dari mitra perusahaan dan kumiai Jepang kami.',
+    'hot-badge':'Paling Diminati',
+    'sek1-name':'Caregiver','sek1-dem':'⭐ Permintaan Sangat Tinggi',
+    'sek2-name':'Restoran','sek2-dem':'Permintaan Tinggi',
+    'sek3-name':'Konstruksi','sek3-dem':'Permintaan Tinggi',
+    'sek4-name':'Manufaktur','sek4-dem':'Permintaan Stabil',
+    'sek5-name':'Pertanian','sek5-dem':'Permintaan Berkala',
+    'sek6-name':'Perhotelan','sek6-dem':'Permintaan Tinggi',
+    'sek7-name':'Mekanik Mobil','sek7-dem':'Permintaan Stabil',
+    'sek8-name':'Driver','sek8-dem':'Permintaan Stabil',
+    'sek-btn':'Lihat Job →','sek-btn2':'Lihat Job →','sek-btn3':'Lihat Job →','sek-btn4':'Lihat Job →',
+    'sek-btn5':'Lihat Job →','sek-btn6':'Lihat Job →','sek-btn7':'Lihat Job →','sek-btn8':'Lihat Job →',
+    'testi-tag':'Mengapa Memilih HIT','testi-title':'Dibangun di Atas<br>Kepercayaan & Koneksi',
+    'testi-sub':'HIT baru berdiri, tapi hadir dengan fondasi kuat — jaringan mitra Jepang yang nyata, tim berpengalaman, dan komitmen penuh terhadap setiap kandidat.',
+    'usp1-title':'Koneksi Jepang Langsung','usp1-desc':'Beroperasi sebagai entitas resmi yang berafiliasi dengan lembaga kumiai Jepang — bukan agen independen. Kandidat kami terhubung langsung ke kebutuhan nyata mitra kami.',
+    'usp2-title':'Proses Transparan','usp2-desc':'Semua biaya, tahapan proses, dan timeline dijelaskan secara terbuka. Tidak ada biaya tersembunyi, tidak ada janji tanpa dasar. Kepercayaan adalah fondasi kami.',
+    'usp3-title':'Pendampingan Menyeluruh','usp3-desc':'Dari persiapan dokumen, pelatihan bahasa Jepang, hingga proses keberangkatan — tim kami mendampingi setiap langkah perjalanan kandidat.',
+    'footer-desc':'PT Hashimoto Indo Trust hadir sebagai mitra resmi lembaga kumiai dan perusahaan Jepang — menjembatani talenta Indonesia menuju peluang kerja yang terstruktur, legal, dan berkelanjutan di Jepang.',
+    'footer-col1-title':'Program','footer-col2-title':'Lokasi Kami',
+    'footer-prog1':'Caregiver','footer-prog2':'Tokutei Ginou','footer-prog3':'Magang Jepang','footer-prog4':'Lihat Semua Sektor',
+    'footer-link1':'Tentang Kami','footer-link2':'Daftar Sekarang','footer-link3':'Kontak',
+    'footer-copy':'© 2025 PT Hashimoto Indo Trust. Hak cipta dilindungi.',
+    'footer-slogan':'Dibangun dengan Integritas · Terhubung dengan Jepang'
+  },
+  jp:{
+    'nav-tagline':'日本就職専門機関','nav-home':'ホーム','nav-program':'プログラム',
+    'nav-jobs':'<span class="jobs-dot"></span> 日本求人',
+    'nav-sektor':'就職分野','nav-tentang':'会社概要','nav-cta':'今すぐ登録',
+    'mob-home':'ホーム','mob-program':'プログラム','mob-jobs':'🟢 日本求人',
+    'mob-sektor':'就職分野','mob-tentang':'会社概要','mob-cta':'今すぐ登録 →',
+    'banner-text':'<span class="banner-tag">🎌 採用募集中</span> HIT第1期生候補者を募集しています — 定員限定。<span class="banner-arrow">詳細を見る →</span>',
+    'hero-badge':'✦ 日本組合・企業の公式パートナー',
+    'hero-h1':'日本でのキャリア、<br><em>正しい選択から。</em>',
+    'hero-p':'構造化されたプログラム、日本企業との直接コネクション、そして初日から出発まで完全サポート。',
+    'hero-btn1':'求人を見る →','hero-btn2':'プログラムを見る',
+    'stat1-lbl':'日本企業パートナー','stat2-lbl':'主要プログラム',
+    'img-placeholder':'日本でのキャリアと生活','open-label':'第1期生募集受付中',
+    'jobs-label':'日本求人情報','jobs-title':'現在募集中の<br>ポジション',
+    'jobs-live':'ライブ — 随時更新','jobs-view-all':'全求人を見る',
+    'stat-1':'登録料','stat-2':'日本企業パートナー','stat-3':'正式プログラム','stat-4':'就職分野',
+    'prog-tag':'主要プログラム','prog-title':'最適なキャリアを<br>選択してください',
+    'prog-sub':'自信を持って日本に向けて準備するための3つの体系化されたプログラム。',
+    'prog1-count':'● 介護プログラム · 定員限定','prog1-title':'介護福祉士','prog1-btn':'プログラムを見る →',
+    'prog1-desc':'日本の医療施設や介護施設で高齢者の介護スタッフとして働くための研修プログラム。',
+    'prog2-count':'● 特定技能 · 専門就労ビザ','prog2-title':'特定技能','prog2-btn':'プログラムを見る →',
+    'prog2-desc':'製造業、建設業、その他戦略的産業分野での専門就労ビザ。',
+    'prog3-count':'● 技能実習 · 正式3年間','prog3-title':'技能実習','prog3-btn':'プログラムを見る →',
+    'prog3-desc':'集中的な日本語研修とパートナー企業への直接配置を含む正式な3年間の技能実習プログラム。',
+    'batch-tag':'🎌 候補者選考',
+    'batch-title':'参加しよう、<br><em style="font-style:italic;color:var(--gold2)">HIT就職プログラムに</em>',
+    'batch-sub':'PT Hashimoto Indo Trustは、日本の組合・提携企業に直接配置するための優秀な候補者を選考しています。',
+    'feat1':'日本の組合・提携企業への直接配置','feat2':'透明性が高く、文書化された選考プロセス',
+    'feat3':'日本語N4研修 + 公式認定','feat4':'日本の労働基準に準拠した競争力ある報酬',
+    'batch-cta':'今すぐ応募する →',
+    'batch-info1-title':'選考期間','batch-info1-text':'2025年より受付開始。書類選考、面接、出発前研修が段階的に実施されます。',
+    'batch-info2-title':'基本要件','batch-info2-text':'インドネシア国籍、18〜35歳、心身ともに健康、集中的な日本語研修への参加意欲、雇用契約の遵守を誓約できること。',
+    'batch-info3-title':'登録料無料','batch-info3-text':'初期選考段階での費用は一切かかりません。全プロセスはインドネシア労働省の規定に準拠して実施されます。',
+    'sektor-tag':'就職分野','sektor-title':'利用可能な<br>就職分野',
+    'sektor-sub':'日本パートナー企業・組合から高い需要がある様々な就職分野。',
+    'hot-badge':'最人気',
+    'sek1-name':'介護','sek1-dem':'⭐ 非常に高い需要',
+    'sek2-name':'レストラン','sek2-dem':'高い需要',
+    'sek3-name':'建設','sek3-dem':'高い需要',
+    'sek4-name':'製造業','sek4-dem':'安定した需要',
+    'sek5-name':'農業','sek5-dem':'定期的な需要',
+    'sek6-name':'ホテル業','sek6-dem':'高い需要',
+    'sek7-name':'自動車整備士','sek7-dem':'安定した需要',
+    'sek8-name':'ドライバー','sek8-dem':'安定した需要',
+    'sek-btn':'求人を見る →','sek-btn2':'求人を見る →','sek-btn3':'求人を見る →','sek-btn4':'求人を見る →',
+    'sek-btn5':'求人を見る →','sek-btn6':'求人を見る →','sek-btn7':'求人を見る →','sek-btn8':'求人を見る →',
+    'testi-tag':'HITを選ぶ理由','testi-title':'信頼と<br>コネクションの上に構築',
+    'testi-sub':'HITは設立したばかりですが、強固な基盤を持っています — 実際の日本パートナーネットワーク、経験豊富なチーム、すべての候補者への完全なコミットメント。',
+    'usp1-title':'日本との直接コネクション','usp1-desc':'日本の組合機関に正式に提携した事業体として運営 — 独立した派遣エージェントではありません。候補者はパートナーの実際のニーズに直結します。',
+    'usp2-title':'透明なプロセス','usp2-desc':'すべての費用、プロセス、スケジュールを公開しています。隠れた費用も根拠のない約束もありません。信頼が私たちの基盤です。',
+    'usp3-title':'総合的なサポート','usp3-desc':'書類準備から日本語研修、出発プロセスまで — チームがすべてのステップで候補者に寄り添います。',
+    'footer-desc':'PT Hashimoto Indo Trustは、日本の組合・企業の公式パートナーとして、インドネシアの人材を構造的・合法的・持続可能な日本の就労機会へつなぎます。',
+    'footer-col1-title':'プログラム','footer-col2-title':'所在地',
+    'footer-prog1':'介護福祉士','footer-prog2':'特定技能','footer-prog3':'技能実習','footer-prog4':'全分野を見る',
+    'footer-link1':'会社概要','footer-link2':'今すぐ登録','footer-link3':'お問い合わせ',
+    'footer-copy':'© 2025 PT Hashimoto Indo Trust. All rights reserved.',
+    'footer-slogan':'誠実さで構築 · 日本とつながる'
+  }
+};
+
+var currentLang='id';
+function setLang(lang){
+  currentLang=lang;
+  var t=translations[lang];
+  document.querySelectorAll('[data-id]').forEach(function(el){
+    var key=el.getAttribute('data-id');
+    if(t[key]!==undefined)el.innerHTML=t[key];
+  });
+  document.getElementById('btnID').classList.toggle('active',lang==='id');
+  document.getElementById('btnJP').classList.toggle('active',lang==='jp');
+  document.documentElement.lang=lang==='jp'?'ja':'id';
+}
+</script>
+</body>
+</html>
